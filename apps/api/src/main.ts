@@ -14,7 +14,8 @@ async function bootstrap() {
             'http://localhost:3005',
             'http://127.0.0.1:3000',
             'http://127.0.0.1:3001',
-            'https://maiscorporativo-web.onrender.com', // Frontend no Render
+            'https://maiscorporativo-web.onrender.com',
+            'https://maiscorporativo-web-vfzk.onrender.com', // Nova URL do Frontend
             /\.onrender\.com$/ // Qualquer subdomínio do Render
         ],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
