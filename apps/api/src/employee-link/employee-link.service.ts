@@ -84,7 +84,7 @@ export class EmployeeLinkService {
             },
         });
 
-        const enriched = await Promise.all(links.map(async (link) => {
+        const enriched = await Promise.all(links.map(async (link: any) => {
             const standbyCount = await this.prisma.invoice.count({
                 where: { userId: sellerId, status: 'STANDBY' as any },
             });
