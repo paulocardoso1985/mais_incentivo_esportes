@@ -1,6 +1,7 @@
 databases:
   - name: maiscorporativo-db
     plan: free
+    region: ohio
 
 services:
   # 1. Backend (NestJS API)
@@ -9,7 +10,7 @@ services:
     env: node
     plan: free
     region: ohio
-    buildCommand: npm install && npx turbo run build --filter=@votorantim-futebol/api
+    buildCommand: npm install && npx turbo run generate && npx turbo run build --filter=@votorantim-futebol/api
     startCommand: node apps/api/dist/main.js
     envVars:
       - key: DATABASE_URL
@@ -27,7 +28,7 @@ services:
     env: node
     plan: free
     region: ohio
-    buildCommand: npm install && npx turbo run build --filter=@votorantim-futebol/web
+    buildCommand: npm install && npx turbo run generate && npx turbo run build --filter=@votorantim-futebol/web
     startCommand: npm start --workspace=@votorantim-futebol/web
     envVars:
       - key: NEXT_PUBLIC_API_URL
