@@ -10,8 +10,8 @@ services:
     env: node
     plan: free
     region: ohio
-    buildCommand: npm install && npx turbo run generate && npx turbo run db:push && npx turbo run build --filter=@votorantim-futebol/api
-    startCommand: node apps/api/dist/main.js
+    buildCommand: npm install && npx turbo run generate && npx turbo run build --filter=@votorantim-futebol/api
+    startCommand: npx turbo run db:push && node apps/api/dist/main.js
     envVars:
       - key: DATABASE_URL
         fromDatabase:
