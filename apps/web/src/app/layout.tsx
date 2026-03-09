@@ -5,10 +5,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Votorantim Futebol | Engajamento B2B",
-    description: "Plataforma de incentivo e prêmios Votorantim Cimentos",
+    title: "Mais Corporativo Esportes | Incentivo & Experiências",
+    description: "Plataforma de incentivo e prêmios Mais Corporativo",
     manifest: "/manifest.json",
-    themeColor: "#002C5B",
+};
+
+export const viewport = {
+    themeColor: "#0c2444",
 };
 
 export default function RootLayout({

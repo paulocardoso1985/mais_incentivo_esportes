@@ -2,12 +2,14 @@ import { Injectable, BadRequestException, NotFoundException } from '@nestjs/comm
 import { PrismaService } from '../prisma.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class OrdersService {
     constructor(
         private prisma: PrismaService,
-        private ledger: LedgerService
+        private ledger: LedgerService,
+        private emailService: EmailService
     ) { }
 
     async create(userId: string, dto: CreateOrderDto) {
@@ -78,6 +80,9 @@ export class OrdersService {
                     }
                 }
             });
+
+            // 7. Notificar usuário e Admin por e-mail
+            await this.emailService.notifyRedemptionRequest(user.email, user.name, pkg.title);
 
             return order;
         });

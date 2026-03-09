@@ -12,6 +12,7 @@ import { OrdersModule } from './orders/orders.module';
 import { RepresentativeModule } from './representative/representative.module';
 import { EmployeeLinkModule } from './employee-link/employee-link.module';
 import { AllowedEmittersModule } from './allowed-emitters/allowed-emitters.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
     imports: [
@@ -29,6 +30,7 @@ import { AllowedEmittersModule } from './allowed-emitters/allowed-emitters.modul
         RepresentativeModule,
         EmployeeLinkModule,
         AllowedEmittersModule,
+        EmailModule,
     ],
     controllers: [],
     providers: [PrismaService],

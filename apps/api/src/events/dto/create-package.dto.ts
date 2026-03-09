@@ -12,4 +12,11 @@ export class CreatePackageDto {
     hasHotel?: boolean;
     hasTransfer?: boolean;
     hasFood?: boolean;
+    region?: string;
+    city?: string;
+    departureAirport?: string;
+    flightsInfo?: string;
+    connectionNotice?: boolean;
+    additionalFlightCost?: number;
+    catalogPdfUrl?: string;
 }

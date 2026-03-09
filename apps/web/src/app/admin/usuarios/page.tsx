@@ -51,17 +51,17 @@ export default function AdminUsuariosPage() {
         }
     }
 
-    if (loading) return <div className="p-20 text-center animate-pulse font-black text-votorantim-blue uppercase tracking-widest">Carregando usuários...</div>;
+    if (loading) return <div className="p-20 text-center animate-pulse font-black text-mais-navy uppercase tracking-widest">Carregando usuários...</div>;
 
     return (
         <div className="min-h-screen bg-gray-50 flex">
             {/* Sidebar Simples */}
-            <aside className="w-64 bg-votorantim-blue text-white p-8 hidden lg:block">
-                <h1 className="text-xl font-black uppercase italic tracking-tighter mb-12">CMS <span className="text-votorantim-green">Gestão</span></h1>
+            <aside className="w-64 bg-mais-navy text-white p-8 hidden lg:block">
+                <h1 className="text-xl font-black uppercase italic tracking-tighter mb-12">CMS <span className="text-mais-orange">Gestão</span></h1>
                 <nav className="space-y-6">
                     <button onClick={() => router.push('/admin/pacotes')} className="block w-full text-left text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-all">Catálogo de Prêmios</button>
                     <button onClick={() => router.push('/admin/pedidos')} className="block w-full text-left text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-all">Gestão de Pedidos</button>
-                    <button onClick={() => router.push('/admin/usuarios')} className="block w-full text-left text-sm font-bold uppercase tracking-widest text-votorantim-green underline underline-offset-8">Gestão de Usuários</button>
+                    <button onClick={() => router.push('/admin/usuarios')} className="block w-full text-left text-sm font-bold uppercase tracking-widest text-mais-orange underline underline-offset-8">Gestão de Usuários</button>
                     <button onClick={() => router.push('/admin/emissores')} className="block w-full text-left text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-all">Emissores Autorizados</button>
                     <div className="pt-20 space-y-4">
                         <button onClick={() => router.push('/dashboard')} className="block text-xs font-black text-white/40 uppercase tracking-widest hover:text-white">Voltar ao App</button>
@@ -81,12 +81,12 @@ export default function AdminUsuariosPage() {
             <main className="flex-1 p-4 sm:p-12">
                 <header className="mb-10 flex justify-between items-end">
                     <div>
-                        <h2 className="text-4xl font-black text-votorantim-blue uppercase">Usuários</h2>
+                        <h2 className="text-4xl font-black text-mais-navy uppercase">Usuários</h2>
                         <p className="text-gray-500 mt-2">Gerencie permissões e visualize todos os perfis cadastrados.</p>
                     </div>
                     <button
                         onClick={() => router.push('/admin/usuarios/novo')}
-                        className="bg-votorantim-blue text-white px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl"
+                        className="bg-mais-navy text-white px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl"
                     >
                         + Cadastrar Usuario
                     </button>
@@ -106,9 +106,9 @@ export default function AdminUsuariosPage() {
                             </thead>
                             <tbody className="divide-y divide-gray-50">
                                 {users.map((user) => (
-                                    <tr key={user.id} className="hover:bg-votorantim-blue/[0.01] transition-colors group">
+                                    <tr key={user.id} className="hover:bg-mais-navy/[0.01] transition-colors group">
                                         <td className="px-8 py-6">
-                                            <p className="font-black text-votorantim-blue uppercase text-sm">{user.name}</p>
+                                            <p className="font-black text-mais-navy uppercase text-sm">{user.name}</p>
                                             <p className="text-[10px] text-gray-400 font-bold tracking-widest">{user.document}</p>
                                         </td>
                                         <td className="px-8 py-6 text-sm text-gray-600 font-medium">
@@ -118,7 +118,7 @@ export default function AdminUsuariosPage() {
                                             <select
                                                 value={user.role}
                                                 onChange={(e) => handleUpdateRole(user.id, e.target.value)}
-                                                className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border-2 transition-all ${user.role === 'ADMIN' ? 'bg-votorantim-green/10 border-votorantim-green text-green-800' : 'bg-votorantim-blue/10 border-votorantim-blue/30 text-votorantim-blue'}`}
+                                                className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border-2 transition-all ${user.role === 'ADMIN' ? 'bg-mais-orange/10 border-mais-orange text-green-800' : 'bg-mais-navy/10 border-mais-navy/30 text-mais-navy'}`}
                                             >
                                                 <option value="CPF_SELLER">Vendedor (CPF)</option>
                                                 <option value="CNPJ_MASTER">Dono de Loja (CNPJ)</option>
@@ -132,7 +132,7 @@ export default function AdminUsuariosPage() {
                                         <td className="px-8 py-6 text-right flex justify-end space-x-2">
                                             <button
                                                 onClick={() => router.push(`/admin/usuarios/${user.id}/editar`)}
-                                                className="text-gray-300 hover:text-votorantim-blue transition-colors p-2"
+                                                className="text-gray-300 hover:text-mais-navy transition-colors p-2"
                                                 title="Editar Usuário"
                                             >
                                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>

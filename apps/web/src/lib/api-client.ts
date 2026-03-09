@@ -12,9 +12,13 @@ export async function apiFetch<T>(endpoint: string, options: RequestInit = {}): 
     const response = await fetch(`${API_URL}${endpoint}`, {
         ...options,
         headers,
+    }).catch(err => {
+        console.error(`[API FETCH ERROR] URL: ${API_URL}${endpoint}`, err);
+        throw err;
     });
 
     if (!response.ok) {
+        console.warn(`[API RESPONSE ERROR] ${response.status} ${response.statusText}`, { endpoint });
         const error = await response.json().catch(() => ({ message: 'Erro desconhecido' }));
         throw new Error(error.message || 'Erro na requisição');
     }

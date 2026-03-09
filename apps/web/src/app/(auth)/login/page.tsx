@@ -34,11 +34,11 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-votorantim-blue px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-screen items-center justify-center bg-mais-navy px-4 py-12 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-8 rounded-2xl bg-white p-8 shadow-2xl">
                 <div>
-                    <h1 className="text-center text-3xl font-bold text-votorantim-blue">
-                        Votorantim <span className="text-votorantim-green">Futebol</span>
+                    <h1 className="text-center text-3xl font-bold text-mais-navy">
+                        Mais Corporativo <span className="text-mais-orange">Esportes</span>
                     </h1>
                     <h2 className="mt-6 text-center text-xl font-semibold tracking-tight text-gray-900">
                         Acesse seu painel
@@ -67,7 +67,7 @@ export default function LoginPage() {
                                 required
                                 value={document}
                                 onChange={(e) => setDocument(e.target.value)}
-                                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-votorantim-green focus:outline-none focus:ring-votorantim-green sm:text-sm"
+                                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-mais-orange focus:outline-none focus:ring-mais-orange sm:text-sm"
                                 placeholder="000.000.000-00"
                             />
                         </div>
@@ -82,11 +82,11 @@ export default function LoginPage() {
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="mt-1 block w-full rounded-lg border border-gray-100 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-votorantim-green focus:outline-none focus:ring-votorantim-green sm:text-sm"
+                                className="mt-1 block w-full rounded-lg border border-gray-100 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-mais-orange focus:outline-none focus:ring-mais-orange sm:text-sm"
                                 placeholder="••••••••"
                             />
                             <div className="mt-1 text-right">
-                                <a href="/forgot-password" title="Recuperar acesso" className="text-[10px] font-black text-gray-400 uppercase tracking-widest hover:text-votorantim-blue transition-colors">
+                                <a href="/forgot-password" title="Recuperar acesso" className="text-[10px] font-black text-gray-400 uppercase tracking-widest hover:text-mais-navy transition-colors">
                                     Esqueci minha senha
                                 </a>
                             </div>
@@ -96,13 +96,13 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="flex w-full justify-center rounded-lg bg-votorantim-green px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-votorantim-green focus:ring-offset-2 disabled:bg-gray-400"
+                        className="flex w-full justify-center rounded-lg bg-mais-orange px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-mais-orange focus:ring-offset-2 disabled:bg-gray-400"
                     >
                         {loading ? 'Entrando...' : 'Entrar na plataforma'}
                     </button>
 
                     <div className="text-center text-sm">
-                        <a href="/register" className="font-medium text-votorantim-blue hover:text-votorantim-green">
+                        <a href="/register" className="font-medium text-mais-navy hover:text-mais-orange">
                             Não tem uma conta? Solicite seu cadastro
                         </a>
                     </div>

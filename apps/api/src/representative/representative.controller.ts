@@ -18,4 +18,9 @@ export class RepresentativeController {
     getStoreDetail(@Request() req: any, @Param('id') id: string): Promise<User> {
         return this.repService.getStoreDetail(req.user.userId, id);
     }
+
+    @Get('link-store/:cnpj')
+    linkStore(@Request() req: any, @Param('cnpj') cnpj: string): Promise<User> {
+        return this.repService.linkStore(req.user.userId, cnpj);
+    }
 }

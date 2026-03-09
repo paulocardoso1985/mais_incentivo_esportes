@@ -90,20 +90,20 @@ export default function EquipePage() {
     const approved = links.filter(l => l.status === 'APPROVED');
     const rejected = links.filter(l => l.status === 'REJECTED');
 
-    if (loading) return <div className="flex items-center justify-center min-h-screen font-black text-votorantim-blue uppercase tracking-widest animate-pulse">Carregando equipe...</div>;
+    if (loading) return <div className="flex items-center justify-center min-h-screen font-black text-mais-navy uppercase tracking-widest animate-pulse">Carregando equipe...</div>;
 
     return (
-        <div className="min-h-screen bg-votorantim-blue/5 pb-20">
-            <nav className="bg-votorantim-blue p-4 text-white shadow-lg sticky top-0 z-50">
+        <div className="min-h-screen bg-mais-navy/5 pb-20">
+            <nav className="bg-mais-navy p-4 text-white shadow-lg sticky top-0 z-50">
                 <div className="max-w-5xl mx-auto flex justify-between items-center px-4">
                     <div className="flex items-center gap-4">
                         <button onClick={() => router.push('/dashboard')} className="hover:opacity-70 transition-opacity">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7 7-7" /></svg>
                         </button>
-                        <h1 className="text-sm font-black uppercase tracking-widest">Gestão de <span className="text-votorantim-green">Equipe</span></h1>
+                        <h1 className="text-sm font-black uppercase tracking-widest">Gestão de <span className="text-mais-orange">Equipe</span></h1>
                     </div>
                     {pending.length > 0 && (
-                        <span className="bg-votorantim-green text-votorantim-blue text-[10px] font-black px-3 py-1 rounded-full animate-pulse">
+                        <span className="bg-mais-orange text-mais-navy text-[10px] font-black px-3 py-1 rounded-full animate-pulse">
                             {pending.length} pendente{pending.length > 1 ? 's' : ''}
                         </span>
                     )}
@@ -116,7 +116,7 @@ export default function EquipePage() {
                 {pending.length > 0 && (
                     <section>
                         <div className="mb-6">
-                            <h2 className="text-3xl font-black text-votorantim-blue uppercase tracking-tighter">⏳ Solicitações Pendentes</h2>
+                            <h2 className="text-3xl font-black text-mais-navy uppercase tracking-tighter">⏳ Solicitações Pendentes</h2>
                             <p className="text-gray-400 text-sm font-medium mt-1 italic">Aprove ou recuse as solicitações de vínculo dos seus vendedores.</p>
                         </div>
                         <div className="space-y-4">
@@ -124,7 +124,7 @@ export default function EquipePage() {
                                 <div key={link.id} className="bg-white rounded-[2rem] p-8 shadow-xl border-2 border-yellow-200 flex flex-col gap-5">
                                     <div className="flex items-center justify-between gap-6">
                                         <div>
-                                            <p className="font-black text-votorantim-blue uppercase text-lg">{link.seller?.name}</p>
+                                            <p className="font-black text-mais-navy uppercase text-lg">{link.seller?.name}</p>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{link.seller?.document}</p>
                                             <p className="text-xs text-gray-400 font-medium mt-1">{link.seller?.email}</p>
                                             <p className="text-[10px] text-gray-300 uppercase font-bold tracking-widest mt-2">Solicitado em {new Date(link.createdAt).toLocaleDateString('pt-BR')}</p>
@@ -133,7 +133,7 @@ export default function EquipePage() {
                                             <button
                                                 disabled={updating === link.id}
                                                 onClick={() => handleRespond(link.id, true)}
-                                                className="bg-votorantim-green text-votorantim-blue px-6 py-3 rounded-2xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-all disabled:opacity-50 shadow-lg shadow-votorantim-green/20"
+                                                className="bg-mais-orange text-mais-navy px-6 py-3 rounded-2xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-all disabled:opacity-50 shadow-lg shadow-mais-orange/20"
                                             >
                                                 Aprovar
                                             </button>
@@ -168,7 +168,7 @@ export default function EquipePage() {
                 {/* -------- APROVADOS -------- */}
                 <section>
                     <div className="mb-6">
-                        <h2 className="text-3xl font-black text-votorantim-blue uppercase tracking-tighter">✅ Equipe Ativa</h2>
+                        <h2 className="text-3xl font-black text-mais-navy uppercase tracking-tighter">✅ Equipe Ativa</h2>
                         <p className="text-gray-400 text-sm font-medium mt-1 italic">Configure a % de coins de cada vendedor vinculado.</p>
                     </div>
                     {approved.length === 0 ? (
@@ -182,15 +182,15 @@ export default function EquipePage() {
                                 const isDirty = draft !== link.coinPercentage; // tem alteração não confirmada
 
                                 return (
-                                    <div key={link.id} className={`bg-white rounded-[2rem] p-8 shadow-xl border-2 relative transition-all ${isDirty ? 'border-votorantim-green/60 shadow-votorantim-green/10' : 'border-votorantim-green/20'}`}>
+                                    <div key={link.id} className={`bg-white rounded-[2rem] p-8 shadow-xl border-2 relative transition-all ${isDirty ? 'border-mais-orange/60 shadow-mais-orange/10' : 'border-mais-orange/20'}`}>
                                         <div className="flex justify-between items-start">
                                             <div>
-                                                <p className="font-black text-votorantim-blue uppercase text-sm">{link.seller?.name}</p>
+                                                <p className="font-black text-mais-navy uppercase text-sm">{link.seller?.name}</p>
                                                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{link.seller?.document}</p>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest">Saldo</p>
-                                                <p className="text-lg font-black text-votorantim-green">{link.seller?.coinBalance} <span className="text-[10px]">C</span></p>
+                                                <p className="text-lg font-black text-mais-orange">{link.seller?.coinBalance} <span className="text-[10px]">Mais Coins</span></p>
                                             </div>
                                         </div>
 
@@ -199,11 +199,11 @@ export default function EquipePage() {
                                                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Porcentagem para o Vendedor</p>
                                                 <div className="flex items-center gap-2">
                                                     {isDirty && (
-                                                        <span className="text-[9px] font-black text-votorantim-green bg-votorantim-green/10 px-2 py-0.5 rounded-full uppercase tracking-widest animate-pulse">
+                                                        <span className="text-[9px] font-black text-mais-orange bg-mais-orange/10 px-2 py-0.5 rounded-full uppercase tracking-widest animate-pulse">
                                                             Não salvo
                                                         </span>
                                                     )}
-                                                    <p className="text-2xl font-black text-votorantim-blue">{draft}<span className="text-sm">%</span></p>
+                                                    <p className="text-2xl font-black text-mais-navy">{draft}<span className="text-sm">%</span></p>
                                                 </div>
                                             </div>
                                             <input
@@ -213,7 +213,7 @@ export default function EquipePage() {
                                                 step="5"
                                                 value={draft}
                                                 onChange={(e) => handleSliderChange(link.id, Number(e.target.value))}
-                                                className="w-full h-2 bg-gray-100 rounded-full appearance-none cursor-pointer accent-votorantim-green"
+                                                className="w-full h-2 bg-gray-100 rounded-full appearance-none cursor-pointer accent-mais-orange"
                                                 disabled={updating === link.id}
                                             />
                                             <div className="flex justify-between text-[9px] text-gray-300 font-bold uppercase mt-1">
@@ -223,8 +223,8 @@ export default function EquipePage() {
                                         </div>
 
                                         <div className="mt-4 flex gap-3 text-[10px] font-black uppercase tracking-widest">
-                                            <span className="flex-1 bg-votorantim-blue/5 text-votorantim-blue text-center py-2 rounded-xl">Empresa: {100 - draft}%</span>
-                                            <span className="flex-1 bg-votorantim-green/10 text-votorantim-green text-center py-2 rounded-xl">Vendedor: {draft}%</span>
+                                            <span className="flex-1 bg-mais-navy/5 text-mais-navy text-center py-2 rounded-xl">Empresa: {100 - draft}%</span>
+                                            <span className="flex-1 bg-mais-orange/10 text-mais-orange text-center py-2 rounded-xl">Vendedor: {draft}%</span>
                                         </div>
 
                                         {/* Botões de confirmação — só aparecem quando há alteração não salva */}
@@ -233,7 +233,7 @@ export default function EquipePage() {
                                                 <button
                                                     onClick={() => handleConfirmPercentage(link.id)}
                                                     disabled={updating === link.id}
-                                                    className="flex-1 bg-votorantim-green text-votorantim-blue py-3 rounded-2xl font-black uppercase text-xs tracking-widest hover:scale-[1.02] transition-all disabled:opacity-50 shadow-lg shadow-votorantim-green/20"
+                                                    className="flex-1 bg-mais-orange text-mais-navy py-3 rounded-2xl font-black uppercase text-xs tracking-widest hover:scale-[1.02] transition-all disabled:opacity-50 shadow-lg shadow-mais-orange/20"
                                                 >
                                                     {updating === link.id ? 'Salvando...' : '✓ Confirmar'}
                                                 </button>

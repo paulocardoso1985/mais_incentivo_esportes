@@ -36,7 +36,7 @@ export default function EnviarNotaPage() {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <nav className="bg-votorantim-blue p-4 text-white">
+            <nav className="bg-mais-navy p-4 text-white">
                 <div className="max-w-7xl mx-auto flex items-center justify-between px-4">
                     <div className="flex items-center">
                         <button onClick={() => router.back()} className="mr-4 hover:opacity-80">
@@ -55,12 +55,12 @@ export default function EnviarNotaPage() {
 
             <main className="max-w-2xl mx-auto p-4 mt-12 text-center">
                 <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-12">
-                    <div className="w-20 h-20 bg-votorantim-green/10 rounded-full flex items-center justify-center mx-auto mb-6 text-votorantim-green">
+                    <div className="w-20 h-20 bg-mais-orange/10 rounded-full flex items-center justify-center mx-auto mb-6 text-mais-orange">
                         <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     </div>
 
-                    <h2 className="text-2xl font-black text-votorantim-blue uppercase tracking-tight">Ganhe Votorantim Coins</h2>
-                    <p className="text-gray-500 mt-2">Insira os 44 dígitos da chave de acesso da sua Nota Fiscal de compra de produtos Votorantim.</p>
+                    <h2 className="text-2xl font-black text-mais-navy uppercase tracking-tight">Ganhe Mais Coins</h2>
+                    <p className="text-gray-500 mt-2">Insira os 44 dígitos da chave de acesso da sua Nota Fiscal de compra de produtos Mais Corporativo.</p>
 
                     <form className="mt-10" onSubmit={handleSubmit}>
                         <div className="relative">
@@ -71,13 +71,13 @@ export default function EnviarNotaPage() {
                                 value={accessKey}
                                 onChange={(e) => setAccessKey(e.target.value.replace(/\D/g, ''))}
                                 placeholder="0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000"
-                                className="w-full text-center text-lg font-mono tracking-widest py-4 border-2 border-gray-100 rounded-xl focus:border-votorantim-green focus:outline-none transition-all placeholder:tracking-normal placeholder:font-sans"
+                                className="w-full text-center text-lg font-mono tracking-widest py-4 border-2 border-gray-100 rounded-xl focus:border-mais-orange focus:outline-none transition-all placeholder:tracking-normal placeholder:font-sans"
                             />
                             <p className="text-[10px] text-gray-400 mt-2 uppercase font-bold tracking-widest">Dígitos informados: {accessKey.length}/44</p>
                         </div>
 
                         {error && (
-                            error.includes('Grupo Votorantim') ? (
+                            error.includes('Mais Corporativo') ? (
                                 <div className="mt-4 p-5 bg-amber-50 border border-amber-200 rounded-2xl text-left flex items-start gap-4">
                                     <span className="text-2xl flex-shrink-0">🚫</span>
                                     <div>
@@ -92,11 +92,11 @@ export default function EnviarNotaPage() {
                                 </div>
                             )
                         )}
-                        {success && <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-xl text-sm border border-green-100 flex items-center gap-2">🎉 <span>Nota enviada com sucesso! Seus <b>Votorantim Coins</b> foram creditados.</span></div>}
+                        {success && <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-xl text-sm border border-green-100 flex items-center gap-2">🎉 <span>Nota enviada com sucesso! Seus <b>Mais Coins</b> foram creditados.</span></div>}
 
                         <button
                             disabled={loading || accessKey.length !== 44}
-                            className="mt-8 w-full bg-votorantim-blue text-white py-4 rounded-xl font-black text-lg shadow-lg hover:shadow-votorantim-blue/20 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:bg-gray-300 disabled:scale-100 disabled:shadow-none uppercase tracking-wide"
+                            className="mt-8 w-full bg-mais-navy text-white py-4 rounded-xl font-black text-lg shadow-lg hover:shadow-mais-navy/20 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:bg-gray-300 disabled:scale-100 disabled:shadow-none uppercase tracking-wide"
                         >
                             {loading ? 'Processando...' : 'Validar e Ganhar Coins'}
                         </button>

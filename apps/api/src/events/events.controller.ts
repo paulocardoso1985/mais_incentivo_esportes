@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, UseGuards, Delete, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards, Delete, Patch, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreatePackageDto } from './dto/create-package.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -11,8 +11,8 @@ export class EventsController {
     constructor(private eventsService: EventsService) { }
 
     @Get()
-    findAll() {
-        return this.eventsService.findAll();
+    findAll(@Query('region') region?: string) {
+        return this.eventsService.findAll(region);
     }
 
     @Get(':id')

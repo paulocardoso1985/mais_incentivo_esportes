@@ -92,14 +92,14 @@ export default function EmissoresPage() {
 
     if (loading) return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <p className="font-black text-votorantim-blue uppercase tracking-widest animate-pulse">Carregando...</p>
+            <p className="font-black text-mais-navy uppercase tracking-widest animate-pulse">Carregando...</p>
         </div>
     );
 
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Nav */}
-            <nav className="bg-votorantim-blue text-white px-8 py-4 flex items-center justify-between shadow-lg sticky top-0 z-50">
+            <nav className="bg-mais-navy text-white px-8 py-4 flex items-center justify-between shadow-lg sticky top-0 z-50">
                 <div className="flex items-center gap-4">
                     <button onClick={() => router.push('/admin')} className="hover:opacity-70 transition-opacity">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@ export default function EmissoresPage() {
                         </svg>
                     </button>
                     <h1 className="font-black uppercase tracking-widest text-sm">
-                        Emissores <span className="text-votorantim-green">Autorizados</span>
+                        Emissores <span className="text-mais-orange">Autorizados</span>
                     </h1>
                 </div>
                 <span className="text-xs font-bold text-white/50 uppercase tracking-widest">
@@ -118,8 +118,8 @@ export default function EmissoresPage() {
             <main className="max-w-4xl mx-auto p-6 sm:p-10 space-y-10">
 
                 {/* Formulário de adição */}
-                <div className="bg-white rounded-[2rem] shadow-xl p-8 border-2 border-votorantim-green/20">
-                    <h2 className="text-xl font-black text-votorantim-blue uppercase tracking-tight mb-6">
+                <div className="bg-white rounded-[2rem] shadow-xl p-8 border-2 border-mais-orange/20">
+                    <h2 className="text-xl font-black text-mais-navy uppercase tracking-tight mb-6">
                         ➕ Adicionar Emissor
                     </h2>
                     <form onSubmit={handleAdd} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -132,7 +132,7 @@ export default function EmissoresPage() {
                                 value={cnpj}
                                 onChange={e => setCnpj(e.target.value)}
                                 maxLength={18}
-                                className="w-full border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-mono focus:border-votorantim-green focus:outline-none"
+                                className="w-full border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-mono focus:border-mais-orange focus:outline-none"
                             />
                         </div>
                         <div className="sm:col-span-2">
@@ -140,10 +140,10 @@ export default function EmissoresPage() {
                             <input
                                 required
                                 type="text"
-                                placeholder="Ex: Votorantim Cimentos S.A. — Filial/RJ"
+                                placeholder="Ex: Mais Corporativo — Filial/RJ"
                                 value={name}
                                 onChange={e => setName(e.target.value)}
-                                className="w-full border-2 border-gray-100 rounded-xl px-4 py-3 text-sm focus:border-votorantim-green focus:outline-none"
+                                className="w-full border-2 border-gray-100 rounded-xl px-4 py-3 text-sm focus:border-mais-orange focus:outline-none"
                             />
                         </div>
                         {formError && (
@@ -160,7 +160,7 @@ export default function EmissoresPage() {
                             <button
                                 type="submit"
                                 disabled={saving === 'new'}
-                                className="bg-votorantim-green text-votorantim-blue px-8 py-3 rounded-xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-all disabled:opacity-50 shadow-lg shadow-votorantim-green/20"
+                                className="bg-mais-orange text-mais-navy px-8 py-3 rounded-xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-all disabled:opacity-50 shadow-lg shadow-mais-orange/20"
                             >
                                 {saving === 'new' ? 'Salvando...' : 'Cadastrar CNPJ'}
                             </button>
@@ -170,8 +170,8 @@ export default function EmissoresPage() {
 
                 {/* Lista de ativos */}
                 <section>
-                    <h2 className="text-2xl font-black text-votorantim-blue uppercase tracking-tighter mb-4">
-                        ✅ Emissores Ativos <span className="text-votorantim-green">({active.length})</span>
+                    <h2 className="text-2xl font-black text-mais-navy uppercase tracking-tighter mb-4">
+                        ✅ Emissores Ativos <span className="text-mais-orange">({active.length})</span>
                     </h2>
                     {active.length === 0 ? (
                         <div className="bg-white rounded-2xl p-10 text-center border-2 border-dashed border-gray-100">
@@ -180,9 +180,9 @@ export default function EmissoresPage() {
                     ) : (
                         <div className="space-y-3">
                             {active.map(emitter => (
-                                <div key={emitter.id} className="bg-white rounded-2xl px-6 py-4 shadow border border-votorantim-green/20 flex items-center justify-between gap-4">
+                                <div key={emitter.id} className="bg-white rounded-2xl px-6 py-4 shadow border border-mais-orange/20 flex items-center justify-between gap-4">
                                     <div>
-                                        <p className="font-black text-votorantim-blue text-sm">{emitter.name}</p>
+                                        <p className="font-black text-mais-navy text-sm">{emitter.name}</p>
                                         <p className="text-xs font-mono text-gray-400 mt-0.5">{formatCnpj(emitter.cnpj)}</p>
                                     </div>
                                     <div className="flex items-center gap-2 flex-shrink-0">
@@ -223,7 +223,7 @@ export default function EmissoresPage() {
                                     <button
                                         onClick={() => handleToggle(emitter.id)}
                                         disabled={saving === emitter.id}
-                                        className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg bg-votorantim-green/10 text-votorantim-green hover:bg-votorantim-green/20 transition-all disabled:opacity-50"
+                                        className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg bg-mais-orange/10 text-mais-orange hover:bg-mais-orange/20 transition-all disabled:opacity-50"
                                     >
                                         Reativar
                                     </button>

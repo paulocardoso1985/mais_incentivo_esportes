@@ -6,10 +6,38 @@ import { CreatePackageDto } from './dto/create-package.dto';
 export class EventsService {
     constructor(private prisma: PrismaService) { }
 
-    async findAll() {
-        return this.prisma.eventPackage.findMany({
-            where: { stock: { gt: 0 }, isActive: true },
-            orderBy: { eventDate: 'asc' },
+    async findAll(region?: string) {
+        const events = await (this.prisma.eventPackage as any).findMany({
+            where: {
+                stock: { gt: 0 },
+                isActive: true,
+            }
+        });
+
+        if (!region) {
+            return events.sort((a: any, b: any) =>
+                new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime()
+            );
+        }
+
+        // Ordenação inteligente: 
+        // 1. Região do Usuário
+        // 2. Nacional
+        // 3. Outras Regiões
+        // 4. Data do Evento (para desempate)
+        return events.sort((a: any, b: any) => {
+            const getPriority = (p: any) => {
+                if (p.region === region) return 0;
+                if (p.region === 'Nacional' || !p.region) return 1;
+                return 2;
+            };
+
+            const priorityA = getPriority(a);
+            const priorityB = getPriority(b);
+
+            if (priorityA !== priorityB) return priorityA - priorityB;
+
+            return new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime();
         });
     }
 

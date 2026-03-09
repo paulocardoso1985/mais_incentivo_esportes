@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException, ForbiddenException, Inject, forwardRef } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { InvoiceService } from '../invoice/invoice.service';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class EmployeeLinkService {
@@ -8,6 +9,7 @@ export class EmployeeLinkService {
         private prisma: PrismaService,
         @Inject(forwardRef(() => InvoiceService))
         private invoiceService: InvoiceService,
+        private emailService: EmailService,
     ) { }
 
     /**
@@ -119,6 +121,12 @@ export class EmployeeLinkService {
             // Se já tem porcentagem configurada (não é 0), processa standby imediatamente
             if (link.coinPercentage > 0) {
                 await this.invoiceService.processStandbyInvoices(link.sellerId, link.storeId, link.coinPercentage);
+            }
+
+            // 2. Notificar o vendedor por e-mail
+            const seller = await this.prisma.user.findUnique({ where: { id: link.sellerId }, include: { store: true } });
+            if (seller && seller.store) {
+                await this.emailService.notifyLinkApproval(seller.email, seller.store.name);
             }
 
             return updatedLink;

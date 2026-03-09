@@ -67,12 +67,12 @@ export default function RedimirPage({ params }: { params: { id: string } }) {
         }
     }
 
-    if (loading) return <div className="p-20 text-center uppercase font-black text-votorantim-blue animate-pulse">Iniciando protocolo de resgate...</div>;
+    if (loading) return <div className="p-20 text-center uppercase font-black text-mais-navy animate-pulse">Iniciando protocolo de resgate...</div>;
     if (!pkg) return <div className="p-20 text-center">Pacote não encontrado.</div>;
 
     return (
-        <div className="min-h-screen bg-votorantim-blue/5">
-            <nav className="bg-votorantim-blue p-4 text-white">
+        <div className="min-h-screen bg-mais-navy/5">
+            <nav className="bg-mais-navy p-4 text-white">
                 <div className="max-w-7xl mx-auto flex items-center justify-between px-4">
                     <div className="flex items-center">
                         <button onClick={() => router.back()} className="mr-4 hover:opacity-80">
@@ -102,12 +102,12 @@ export default function RedimirPage({ params }: { params: { id: string } }) {
                             <svg className="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
                         </div>
 
-                        <span className="bg-votorantim-blue text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
+                        <span className="bg-mais-navy text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
                             {pkg.championship}
                         </span>
-                        <h2 className="text-4xl font-black text-votorantim-blue mt-4 uppercase leading-none">{pkg.teamMatch}</h2>
+                        <h2 className="text-4xl font-black text-mais-navy mt-4 uppercase leading-none">{pkg.teamMatch}</h2>
                         <div className="flex items-center text-gray-500 font-bold mt-4 uppercase text-sm">
-                            <svg className="w-5 h-5 mr-1 text-votorantim-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <svg className="w-5 h-5 mr-1 text-mais-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                             {pkg.location} • {new Date(pkg.eventDate).toLocaleDateString('pt-BR')}
                         </div>
 
@@ -132,23 +132,23 @@ export default function RedimirPage({ params }: { params: { id: string } }) {
                     </section>
 
                     <section className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100">
-                        <h3 className="text-xl font-black text-votorantim-blue uppercase mb-6">Informações do Passageiro</h3>
+                        <h3 className="text-xl font-black text-mais-navy uppercase mb-6">Informações do Passageiro</h3>
                         <form id="checkout-form" onSubmit={handleCheckout} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="sm:col-span-2">
                                 <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Nome Completo (Conforme Documento)</label>
-                                <input type="text" required value={paxName} onChange={(e) => setPaxName(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-votorantim-green font-bold text-votorantim-blue" />
+                                <input type="text" required value={paxName} onChange={(e) => setPaxName(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-mais-orange font-bold text-mais-navy" />
                             </div>
                             <div>
                                 <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">CPF / RG</label>
-                                <input type="text" required value={paxDoc} onChange={(e) => setPaxDoc(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-votorantim-green font-bold text-votorantim-blue" />
+                                <input type="text" required value={paxDoc} onChange={(e) => setPaxDoc(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-mais-orange font-bold text-mais-navy" />
                             </div>
                             <div>
                                 <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Data de Nascimento</label>
-                                <input type="date" required value={paxBirth} onChange={(e) => setPaxBirth(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-votorantim-green font-bold text-votorantim-blue" />
+                                <input type="date" required value={paxBirth} onChange={(e) => setPaxBirth(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-mais-orange font-bold text-mais-navy" />
                             </div>
                             <div className="sm:col-span-2">
                                 <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">E-mail para confirmação</label>
-                                <input type="email" required value={paxEmail} onChange={(e) => setPaxEmail(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-votorantim-green font-bold text-votorantim-blue" />
+                                <input type="email" required value={paxEmail} onChange={(e) => setPaxEmail(e.target.value)} className="w-full bg-gray-50 border-none rounded-xl p-4 focus:ring-2 focus:ring-mais-orange font-bold text-mais-navy" />
                             </div>
                         </form>
                     </section>
@@ -156,28 +156,28 @@ export default function RedimirPage({ params }: { params: { id: string } }) {
 
                 {/* Lado Direito: Resumo Financeiro */}
                 <div className="lg:col-span-1">
-                    <div className="bg-white rounded-[2rem] p-8 shadow-2xl border-2 border-votorantim-green/20 sticky top-24">
-                        <h3 className="text-lg font-black text-votorantim-blue uppercase mb-6 text-center">Resumo da Reserva</h3>
+                    <div className="bg-white rounded-[2rem] p-8 shadow-2xl border-2 border-mais-orange/20 sticky top-24">
+                        <h3 className="text-lg font-black text-mais-navy uppercase mb-6 text-center">Resumo da Reserva</h3>
 
                         <div className="space-y-4">
                             <div className="flex justify-between items-center text-sm">
                                 <span className="text-gray-400 font-bold uppercase">Pacote Premium</span>
-                                <span className="font-black text-votorantim-blue">{pkg.priceCoins} C</span>
+                                <span className="font-black text-mais-navy">{pkg.priceCoins} Mais Coins</span>
                             </div>
                             <div className="flex justify-between items-center text-sm">
                                 <span className="text-gray-400 font-bold uppercase">Taxas de Emissão</span>
-                                <span className="font-black text-votorantim-blue">GRÁTIS</span>
+                                <span className="font-black text-mais-navy">GRÁTIS</span>
                             </div>
                             <div className="pt-4 mt-4 border-t border-gray-100 flex justify-between items-center">
-                                <span className="text-votorantim-blue font-black uppercase">Total do Resgate</span>
-                                <span className="text-3xl font-black text-votorantim-green">{pkg.priceCoins} <span className="text-xs">COINS</span></span>
+                                <span className="text-mais-navy font-black uppercase">Total do Resgate</span>
+                                <span className="text-3xl font-black text-mais-orange">{pkg.priceCoins} <span className="text-xs">Mais Coins</span></span>
                             </div>
                         </div>
 
-                        <div className="mt-8 p-4 bg-votorantim-blue/5 rounded-2xl">
+                        <div className="mt-8 p-4 bg-mais-navy/5 rounded-2xl">
                             <p className="text-[10px] text-gray-400 font-black uppercase text-center mb-1">Seu Saldo Atual</p>
-                            <p className={`text-center font-black text-xl ${user?.coinBalance < pkg.priceCoins ? 'text-red-500' : 'text-votorantim-blue'}`}>
-                                {user?.coinBalance} COINS
+                            <p className={`text-center font-black text-xl ${user?.coinBalance < pkg.priceCoins ? 'text-red-500' : 'text-mais-navy'}`}>
+                                {user?.coinBalance} Mais Coins
                             </p>
                             {user?.coinBalance < pkg.priceCoins && (
                                 <p className="text-[10px] text-red-500 font-bold text-center mt-2 uppercase">Saldo insuficiente para este resgate</p>
@@ -189,7 +189,7 @@ export default function RedimirPage({ params }: { params: { id: string } }) {
                         <button
                             form="checkout-form"
                             disabled={submitting || user?.coinBalance < pkg.priceCoins}
-                            className="mt-8 w-full bg-votorantim-green text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-green-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:bg-gray-200 disabled:scale-100 disabled:shadow-none"
+                            className="mt-8 w-full bg-mais-orange text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-orange-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:bg-gray-200 disabled:scale-100 disabled:shadow-none"
                         >
                             {submitting ? 'Processando Reserva...' : 'Confirmar Resgate'}
                         </button>

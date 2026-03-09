@@ -8,10 +8,17 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                mais: {
+                    orange: '#f58f2a',
+                    navy: '#0c2444',
+                    red: '#f15424',
+                    blue: '#14244c',
+                },
+                // Alias para compatibilidade inicial
                 votorantim: {
-                    blue: '#002C5B',
-                    green: '#78BE20',
-                    yellow: '#FFCD00',
+                    blue: '#0c2444',
+                    green: '#f58f2a',
+                    yellow: '#f15424',
                 },
             },
         },

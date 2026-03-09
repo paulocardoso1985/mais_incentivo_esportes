@@ -38,10 +38,10 @@ export default function AdminLoginPage() {
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-900 px-4 sm:px-6 lg:px-8 font-sans">
-            <div className="w-full max-w-md space-y-8 rounded-[2rem] bg-white p-10 shadow-2xl border-t-8 border-votorantim-green">
+            <div className="w-full max-w-md space-y-8 rounded-[2rem] bg-white p-10 shadow-2xl border-t-8 border-mais-orange">
                 <div className="text-center">
-                    <h1 className="text-3xl font-black text-votorantim-blue uppercase italic tracking-tighter">
-                        CMS <span className="text-votorantim-green">Gestão</span>
+                    <h1 className="text-3xl font-black text-mais-navy uppercase italic tracking-tighter">
+                        CMS <span className="text-mais-orange">Gestão</span>
                     </h1>
                     <p className="mt-4 text-xs font-black text-gray-400 uppercase tracking-widest">Acesso Restrito Mais Corporativo</p>
                 </div>
@@ -61,8 +61,8 @@ export default function AdminLoginPage() {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="block w-full rounded-2xl border-2 border-gray-50 bg-gray-50 px-4 py-4 text-votorantim-blue focus:border-votorantim-green focus:bg-white focus:outline-none transition-all font-medium"
-                                placeholder="usuario@votorantim.com.br"
+                                className="block w-full rounded-2xl border-2 border-gray-50 bg-gray-50 px-4 py-4 text-mais-navy focus:border-mais-orange focus:bg-white focus:outline-none transition-all font-medium"
+                                placeholder="usuario@maiscorporativo.com.br"
                             />
                         </div>
                         <div>
@@ -72,11 +72,11 @@ export default function AdminLoginPage() {
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="block w-full rounded-2xl border-2 border-gray-50 bg-gray-50 px-4 py-4 text-votorantim-blue focus:border-votorantim-green focus:bg-white focus:outline-none transition-all font-medium"
+                                className="block w-full rounded-2xl border-2 border-gray-50 bg-gray-50 px-4 py-4 text-mais-navy focus:border-mais-orange focus:bg-white focus:outline-none transition-all font-medium"
                                 placeholder="••••••••"
                             />
                             <div className="mt-1 text-right px-2">
-                                <a href="/forgot-password" title="Recuperar acesso" className="text-[10px] font-black text-gray-400 uppercase tracking-widest hover:text-votorantim-blue transition-colors">
+                                <a href="/forgot-password" title="Recuperar acesso" className="text-[10px] font-black text-gray-400 uppercase tracking-widest hover:text-mais-navy transition-colors">
                                     Esqueci minha senha
                                 </a>
                             </div>
@@ -86,13 +86,13 @@ export default function AdminLoginPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="flex w-full justify-center rounded-2xl bg-votorantim-blue py-5 text-sm font-black text-white shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 uppercase tracking-widest"
+                        className="flex w-full justify-center rounded-2xl bg-mais-navy py-5 text-sm font-black text-white shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 uppercase tracking-widest"
                     >
                         {loading ? 'Validando...' : 'Entrar no Painel'}
                     </button>
 
                     <div className="text-center">
-                        <a href="/login" className="text-[10px] font-black text-gray-400 hover:text-votorantim-blue transition-colors uppercase tracking-widest">
+                        <a href="/login" className="text-[10px] font-black text-gray-400 hover:text-mais-navy transition-colors uppercase tracking-widest">
                             Voltar para área de Clientes
                         </a>
                     </div>

@@ -8,4 +8,7 @@ export class RegisterDto {
     role: Role;
     storeId?: string;
     favoriteTeam?: string;
+    region?: string;
+    city?: string;
+    managedRegion?: string;
 }

@@ -41,6 +41,11 @@ model User {
   role          Role      @default(CPF_SELLER)
   document      String    @unique // CNPJ ou CPF
   favoriteTeam  String?
+  region        String?   // Ex: Norte, Sul, Sudeste
+  city          String?   // Ex: Belém, São Paulo
+  
+  // Para Vendedores Regionais (Sell-in)
+  managedRegion String?   // Regional que o vendedor atende
   
   // Relação Hierárquica (Vendedor -> Loja)
   storeId       String?
@@ -139,7 +144,16 @@ model EventPackage {
   
   description   String?
   imageUrl      String?
+  catalogPdfUrl String?   // URL para o PDF do catálogo adicional
   isActive      Boolean  @default(true)
+  
+  // Campos de Logística e Regionalização
+  region        String?   // Ex: Nordeste, Norte
+  city          String?   // Ex: Fortaleza, Belém
+  departureAirport String? // Ex: GRU, FOR, GIG
+  flightsInfo   String?   // Detalhes sobre os voos
+  connectionNotice Boolean @default(false) // Alerta sobre necessidade de conexões
+  additionalFlightCost Int? @default(0) // Valor adicional caso houver
   
   orders        Order[]
   

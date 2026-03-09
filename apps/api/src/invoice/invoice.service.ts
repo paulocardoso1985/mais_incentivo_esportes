@@ -2,6 +2,7 @@ import { Injectable, BadRequestException, ConflictException, UnprocessableEntity
 import { PrismaService } from '../prisma.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { AllowedEmittersService } from '../allowed-emitters/allowed-emitters.service';
+import { EmailService } from '../email/email.service';
 import { Invoice, InvoiceStatus } from '@votorantim-futebol/database';
 
 @Injectable()
@@ -10,6 +11,7 @@ export class InvoiceService {
         private prisma: PrismaService,
         private ledger: LedgerService,
         private allowedEmitters: AllowedEmittersService,
+        private emailService: EmailService,
     ) { }
 
     async submit(userId: string, accessKey: string): Promise<Invoice> {
@@ -110,6 +112,12 @@ export class InvoiceService {
                 `Crédito de coins via Nota Fiscal: ${accessKey}`,
                 invoice.id
             );
+        }
+
+        // 7. Notificar usuário por e-mail
+        const user = await this.prisma.user.findUnique({ where: { id: userId } });
+        if (user) {
+            await this.emailService.notifyInvoiceUploaded(user.email, user.name);
         }
 
         return invoice;

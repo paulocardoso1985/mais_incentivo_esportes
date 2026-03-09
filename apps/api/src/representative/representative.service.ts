@@ -38,6 +38,37 @@ export class RepresentativeService {
             store.invoices.forEach(i => totalCoinsGenerated += i.coinsIssued);
         });
 
+        const mappedStores = await Promise.all(stores.map(async (u: any) => {
+            const sellersCount = u.sellers?.length || 0;
+
+            // Buscar pacotes da região da loja para ver o "Próximo Resgate"
+            const nextEvent = await (this.prisma.eventPackage as any).findFirst({
+                where: { region: u.region },
+                orderBy: { priceCoins: 'asc' }
+            });
+
+            const balance = u.coinBalance || 0;
+            const nextPrice = nextEvent?.priceCoins || 5000;
+            const diff = nextPrice - balance;
+            const isNear = diff > 0 && diff <= (nextPrice * 0.25); // Falta menos de 25%
+
+            let suggestion = null;
+            if (isNear) {
+                suggestion = `Oferecer Booster de 5x para compras acima de R$ 5.000,00 para bater a meta de ${nextEvent?.teamMatch}`;
+            }
+
+            return {
+                id: u.id,
+                name: u.name,
+                document: u.document,
+                balance: balance,
+                sellersCount: sellersCount,
+                nextRedemption: nextEvent?.teamMatch || 'N/A',
+                isNearRedemption: isNear,
+                suggestion: suggestion
+            };
+        }));
+
         return {
             metrics: {
                 totalStores,
@@ -45,13 +76,7 @@ export class RepresentativeService {
                 totalCoinsGenerated,
                 totalBalanceInNetwork,
             },
-            stores: stores.map(s => ({
-                id: s.id,
-                name: s.name,
-                document: s.document,
-                balance: s.coinBalance,
-                sellersCount: s.sellers.length,
-            }))
+            stores: mappedStores
         };
     }
 
@@ -70,5 +95,16 @@ export class RepresentativeService {
         if (!store) throw new ForbiddenException('Loja não encontrada ou não vinculada a este representante');
 
         return store;
+    }
+
+    async linkStore(repId: string, storeCnpj: string) {
+        const store = await this.prisma.user.findUnique({ where: { document: storeCnpj } });
+        if (!store) throw new Error('Loja não encontrada.');
+        if (store.role !== 'CNPJ_MASTER') throw new Error('O documento informado não pertence a uma empresa.');
+
+        return this.prisma.user.update({
+            where: { document: storeCnpj },
+            data: { representativeId: repId }
+        });
     }
 }

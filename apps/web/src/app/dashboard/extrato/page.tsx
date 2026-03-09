@@ -25,13 +25,13 @@ export default function ExtratoPage() {
 
     return (
         <div className="min-h-screen bg-gray-50 pb-12">
-            <nav className="bg-votorantim-blue p-4 text-white">
+            <nav className="bg-mais-navy p-4 text-white">
                 <div className="max-w-7xl mx-auto flex items-center justify-between px-4">
                     <div className="flex items-center">
                         <button onClick={() => router.back()} className="mr-4 hover:opacity-80">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                         </button>
-                        <h1 className="text-xl font-bold">Extrato de Coins</h1>
+                        <h1 className="text-xl font-bold">Extrato de Mais Coins</h1>
                     </div>
                     <button
                         onClick={() => router.push('/dashboard')}
@@ -44,9 +44,9 @@ export default function ExtratoPage() {
 
             <main className="max-w-4xl mx-auto p-4 mt-8">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div className="p-6 border-b border-gray-100 bg-votorantim-blue/5">
-                        <h2 className="text-lg font-bold text-votorantim-blue">Histórico de Transações</h2>
-                        <p className="text-sm text-gray-500">Acompanhe todos os seus créditos e débitos.</p>
+                    <div className="p-6 border-b border-gray-100 bg-mais-navy/5">
+                        <h2 className="text-lg font-bold text-mais-navy">Histórico de Transações</h2>
+                        <p className="text-sm text-gray-500">Acompanhe todos os seus créditos e débitos de Mais Coins.</p>
                     </div>
 
                     {loading ? (
@@ -66,8 +66,8 @@ export default function ExtratoPage() {
                                             {item.type}
                                         </span>
                                     </div>
-                                    <div className={`text-xl font-black ${item.amount > 0 ? 'text-votorantim-green' : 'text-red-500'}`}>
-                                        {item.amount > 0 ? '+' : ''}{item.amount}
+                                    <div className={`text-xl font-black ${item.amount > 0 ? 'text-mais-orange' : 'text-red-500'}`}>
+                                        {item.amount > 0 ? '+' : ''}{item.amount} Mais Coins
                                     </div>
                                 </div>
                             ))}
