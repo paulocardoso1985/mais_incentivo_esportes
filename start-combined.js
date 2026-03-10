@@ -36,14 +36,18 @@ function startService(name, command, args, cwd, extraEnv = {}) {
 
 async function main() {
     console.log("=== INICIANDO COMBO (API + WEB) ===");
-    console.log("Variáveis presentes:", {
+
+    // Log de diagnóstico
+    const envKeys = Object.keys(process.env).filter(k => !k.includes('TOKEN') && !k.includes('SECRET') && !k.includes('PASS'));
+    console.log("Variaveis de ambiente disponiveis (keys):", envKeys.join(', '));
+    console.log("Status de variaveis criticas:", {
         PORT: process.env.PORT,
-        DATABASE_URL: !!process.env.DATABASE_URL ? "Definida" : "AUSENTE",
-        JWT_SECRET: !!process.env.JWT_SECRET ? "Definida" : "AUSENTE",
+        DATABASE_URL: !!process.env.DATABASE_URL ? "OK" : "AUSENTE",
+        JWT_SECRET: !!process.env.JWT_SECRET ? "OK" : "AUSENTE (ERRO!)",
     });
 
     // 1. Rodar migrações do banco (via Prisma)
-    console.log("[DATABASE] Rodando prisma db push...");
+    console.log("[DATABASE] Verificando banco...");
     const migrate = spawn('npx', ['prisma', 'db', 'push'], {
         stdio: 'inherit',
         cwd: '/app/packages/database',
@@ -63,7 +67,7 @@ async function main() {
         });
 
         seed.on('exit', () => {
-            console.log("[DATABASE] Database sync finalizado.");
+            console.log("[DATABASE] Setup concluido. Iniciando servicos...");
 
             // 2. Iniciar API e Web simultaneamente
 
@@ -72,8 +76,8 @@ async function main() {
                 PORT: '3005'
             });
 
-            // WEB - Porta padrão do Railway (geralmente 3000 ou 8080)
-            // HOSTNAME 0.0.0.0 é OBRIGATÓRIO para evitar erro 502 no Railway
+            // WEB - Porta padrão do Railway (geralmente 8080 ou 3000)
+            // HOSTNAME 0.0.0.0 é OBRIGATÓRIO para o Railway
             startService('WEB', 'node', ['apps/web/server.js'], '/app', {
                 HOSTNAME: '0.0.0.0'
             });
