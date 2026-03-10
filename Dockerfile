@@ -20,6 +20,9 @@ RUN npm install
 # Copia código fonte
 COPY . .
 
+# Garante que a pasta public existe (evita erro no standalone/copy se estiver vazia no git)
+RUN mkdir -p apps/web/public
+
 # Gera o Prisma Client
 RUN cd packages/database && npx prisma generate
 
@@ -32,28 +35,32 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Copia arquivos base
+# Instalamos o prisma para rodar os comandos no start-combined.js
+RUN npm install -g prisma
+
+# 1. Copia arquivos base e node_modules (essencial para a API funcionar)
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/package-lock.json ./
 COPY --from=builder /app/node_modules ./node_modules
 
-# Copia API
+# 2. Copia API e Banco
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/apps/api/package.json ./apps/api/package.json
-
-# Copia Banco/Prisma (necessário para db push no start)
 COPY --from=builder /app/packages/database ./packages/database
 
-# Web files (Next.js Standalone)
+# 3. Copia Web (Next.js Standalone)
+# O standalone ja contem um servidor node otimizado para produção.
+# No monorepo ele gera a estrutura completa dentro de standalone/
 COPY --from=builder /app/apps/web/.next/standalone ./
 COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
-# Garantimos a existencia da pasta public (mesmo que vazia)
-COPY --from=builder /app/apps/web/public* ./apps/web/public/
+# Copia public 
+COPY --from=builder /app/apps/web/public ./apps/web/public
 
-# Copia script combinado
+# 4. Script combinado
 COPY start-combined.js ./
 
-# Variáveis de porta
+# Railway usa a porta 3000 por padrao para o trafego publico (Web)
+# A API rodara internamente em outra porta configurada
 ENV PORT=3000
 EXPOSE 3000 3001
 

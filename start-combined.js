@@ -5,12 +5,13 @@ const { spawn } = require('child_process');
  * no mesmo container do Railway.
  */
 
-function startService(name, command, args, cwd) {
+function startService(name, command, args, cwd, extraEnv = {}) {
     console.log(`[${name}] Iniciando servico...`);
     const child = spawn(command, args, {
         stdio: 'inherit',
         cwd: cwd,
-        shell: true
+        shell: true,
+        env: { ...process.env, ...extraEnv }
     });
 
     child.on('exit', (code) => {
@@ -49,10 +50,12 @@ async function main() {
             console.log("[DATABASE] Seed concluido (ou ignorado).");
 
             // 2. Iniciar API e Web simultaneamente
-            // API na porta 3001 (interna)
-            startService('API', 'node', ['apps/api/dist/main.js'], '/app');
 
-            // Web na porta 3000 (externa/pública no Railway)
+            // API na porta 3005 (interna)
+            // Forçamos a porta 3005 para não conflitar com o Web que usa a variável PORT do Railway
+            startService('API', 'node', ['apps/api/dist/main.js'], '/app', { PORT: '3005' });
+
+            // Web na porta 3000 (externa/pública no Railway via variável PORT padrão)
             startService('WEB', 'node', ['apps/web/server.js'], '/app');
         });
     });

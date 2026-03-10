@@ -2,7 +2,15 @@
 const nextConfig = {
     reactStrictMode: true,
     transpilePackages: ["@votorantim-futebol/database"],
-    output: 'standalone', // Necessário para o Docker build (Railway)
+    output: 'standalone',
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: 'http://localhost:3005/:path*',
+            },
+        ];
+    },
 };
 
 module.exports = nextConfig;
