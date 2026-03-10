@@ -59,6 +59,7 @@ COPY --from=builder /app/apps/web/public ./apps/web/public
 # 4. Script combinado
 COPY start-combined.js ./
 
-# Railway injeta a PORT automaticamente. 
-# Removendo expooses fixas para evitar confusão no proxy.
+# Sincronizando com o que o Railway espera no painel (Port 3000)
+ENV PORT=3000
+EXPOSE 3000
 CMD ["node", "start-combined.js"]
