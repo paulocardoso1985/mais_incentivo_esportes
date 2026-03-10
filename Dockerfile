@@ -44,11 +44,11 @@ COPY --from=builder /app/apps/api/package.json ./apps/api/package.json
 # Copia Banco/Prisma (necessário para db push no start)
 COPY --from=builder /app/packages/database ./packages/database
 
-# Copia Web (Next.js Standalone)
-# No standalone, o Next.js coloca tudo que precisa em .next/standalone
+# Web files (Next.js Standalone)
 COPY --from=builder /app/apps/web/.next/standalone ./
 COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
-COPY --from=builder /app/apps/web/public ./apps/web/public
+# Garantimos a existencia da pasta public (mesmo que vazia)
+COPY --from=builder /app/apps/web/public* ./apps/web/public/
 
 # Copia script combinado
 COPY start-combined.js ./
