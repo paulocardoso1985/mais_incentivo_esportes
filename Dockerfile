@@ -59,9 +59,6 @@ COPY --from=builder /app/apps/web/public ./apps/web/public
 # 4. Script combinado
 COPY start-combined.js ./
 
-# Railway usa a porta 3000 por padrao para o trafego publico (Web)
-# A API rodara internamente em outra porta configurada
-ENV PORT=3000
-EXPOSE 3000 3001
-
+# Railway injeta a PORT automaticamente. 
+# Removendo expooses fixas para evitar confusão no proxy.
 CMD ["node", "start-combined.js"]
