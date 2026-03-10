@@ -86,9 +86,9 @@ async function main() {
             });
 
             // WEB - Porta principal
-            // Forçamos a porta do Railway explicitamente
-            const webPort = process.env.PORT || '8080';
-            console.log(`[WEB] Tentando bind em 0.0.0.0:${webPort}`);
+            // Forçamos a porta 3000 conforme visto no seu print do Railway
+            const webPort = '3000';
+            console.log(`[WEB] Forçando bind em 0.0.0.0:${webPort} (Painel Railway espera 3000)`);
 
             startService('WEB', 'node', ['apps/web/server.js'], '/app', {
                 HOSTNAME: '0.0.0.0',
